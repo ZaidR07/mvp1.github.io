@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        section{
+            margin-bottom: 40vh;
+        }
+        code{
+            white-space: pre-line;
+        }
+    </style>
+</head>
+<body>
+    <section id="index"> 
+       <div class="index">
+            <a href="#2a"><span>Add Binary</span></a><br>
+            <a href="#2b"><span>Convert Decimal to binary</span></a><br>
+            <a href="#3a"><span>Count letter space and others</span></a><br>
+            <a href="#3b"><span>Sum of digits of Character array</span></a><br>
+            <a href="#4b"><span>Constructor and Destructor</span></a><br>
+            <a href="#4c"><span>Abstract</span></a><br>
+            <a href="#5a"><span>Single Inheritance</span></a><br>
+            <a href="#5b"><span>Method Overriding</span></a><br>
+            <a href="#5c"><span>Multiple Inheritance</span></a><br>
+            <a href="#7a"><span>Vector</span></a><br>
+            <a href="#7b"><span>Thread Life cycle</span></a><br>
+
+        </div>
+
+    </section>
+    <section id="2a">
+        <code>
+            import java.util.Scanner;
+
+            public class addbinary {
+
+	
+	
+	public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter First and Second Numbers = ");	
+		long b1 = sc.nextLong();
+		long b2 = sc.nextLong();
+		
+		int i = 0, carry = 0;
+		
+		int[] sum = new int[10];
+		
+		while(b1 != 0 || b2 != 0)
+		{
+			sum[i++] = (int)((b1 % 10 + b2 % 10 + carry) % 2);
+			carry    = (int)((b1 % 10 + b2 % 10 + carry) / 2);
+			b1 /= 10;
+			b2 /= 10;
+		}
+		if(carry != 0)
+		{
+			sum[i++] = carry;
+		}
+		--i;
+		System.out.print("\nThe Total of the above Two = ");
+		while(i >= 0)
+		{
+			System.out.print(sum[i--]);
+		}
+		System.out.println();
+	}
+
+}
+        </code>
+
+    </section>
+    <section id="2b">
+        <code>
+            import java.util.Scanner;
+public class convertbinary
+{
+	public static void main(String arg[])
+	{
+		System.out.print("Enter any number: ");
+		Scanner sc=new Scanner(System.in);
+		int n;
+		n=sc.nextInt();
+		int binary[]=new int[20];
+		int index=0;
+		while(n>0)
+		{
+			binary[index++]=n%2;
+			n=n/2;
+		}
+		int i;
+		for(i=index-1;i>=0;i--)
+		{
+		    System.out.print(binary[i]);
+		}
+		System.out.println();
+	}
+}
+        </code>
+    </section>
+    <section id="3a">
+        <code>
+            import java.util.*;
+            public class count
+            {	public static void main(String arg[])
+                {
+                Scanner sc=new Scanner(System.in);
+                    System.out.println("Enter string");
+                    String str=sc.nextLine();
+                    int l=0,s=0,n=0,o=0;
+                for (int i=0;i<=str.length();i++)
+                {
+                    if(Character.isLetter(str.charAt(i)))
+                    {
+                        l=l+1;
+                    }
+                    else if(Character.isDigit(str.charAt(i)))
+                    {
+                        s=s+1;
+                    }
+                    else if(Character.isWhitespace(str.charAt(i)))
+                    {
+                        n=n+1;
+                    }
+                    else 
+                    {
+                        o=o+1;
+                    }
+                }
+                System.out.println("number of letter" + l);	
+                System.out.println("number of digit" + s);	
+                System.out.println("number of spaces" + n);	
+                System.out.println("number of other charcter" + o);
+                }
+            }
+        </code>
+    </section>
+    <section id="3b">
+        <code>
+            public class sumdigit
+{
+    public static void main(String args[])
+    {
+        int sum = 0;
+        int arr[]={0,1,2,3,4,5};
+        for(int i = 0;i < 6; i++)
+        {
+            sum += arr[i];
+        }
+        System.out.println("Sum of digit of array = "+sum);
+    }
+}
+        </code>
+
+    </section>
+    <section id="4b">
+        <code>
+            class condes
+{
+    static int i = 0;
+    public condes()
+    {
+        System.out.println("Object Created : "+i);
+        i++;
+    }
+    protected void finanalize()
+    {
+        System.out.println("Object Destroyed : "+i);
+        i--;
+    }
+
+}
+public class constdest
+{
+    public static void main(String[] args)
+    {
+        condes ob1 = new condes();
+        condes ob2 = new condes();
+        condes ob3 = new condes();
+
+        ob3 = null;
+        System.gc();
+        ob1 = ob2;
+        System.gc();
+
+    }
+}
+        </code>
+    </section>
+    <section id="4c">
+        <code>
+            abstract class A
+{
+    abstract void show();
+}
+class B extends A
+{
+    void show()
+    {
+        System.out.println("Inside Abstract class");
+    }
+    void display()
+    {
+        System.out.println("Inside Child class");
+
+    }
+}
+public class abstract1
+{
+    public static void main(String args[]) 
+    {
+        B ob = new B();
+        ob.show();
+        ob.display();
+    }
+}
+
+        </code>
+    </section>
+    <section id="5a">
+        <code>
+            class parent
+{
+    void display()
+    {
+        System.out.println("Inside Parent Class");
+    }
+}
+class child extends parent
+{
+    void show()
+    {
+        System.out.println("Inside Child Class");
+    }
+}
+public class single
+{
+    public static void main(String args[])
+    {
+        child ob = new child();
+        ob.display();
+        ob.show();
+    }
+}
+        </code>
+    </section>
+    <section id="5b">
+        <code>
+            class Shape
+{
+    void draw()
+    {
+        System.out.println("Draw a Shape");
+    }
+
+}
+class Square
+{
+    void draw()
+    {
+        System.out.println("Draw a Square");
+    }
+    
+}
+class Rectangle
+{
+    void draw()
+    {
+        System.out.println("Draw a Rectangle");
+    }
+    
+}
+public class override
+{
+    public static void main(String args[])
+    {
+        Shape ob1 = new Shape();
+        Square ob2 = new Square();
+        Rectangle ob3 = new Rectangle();
+        ob1.draw();
+        ob2.draw();
+        ob3.draw(); 
+    }
+}
+        </code>
+    </section>
+    <section id="5c">
+        <code>
+            import java.util.*;
+import java.io.*;
+
+interface salary
+{
+    int salary = 10000;
+}
+class employee
+{
+    String name = "Tom";
+    int ta = 1000;
+    int da = 1000;
+}
+public class multi extends employee implements salary
+{
+    public static void main(String args[])
+    {
+       
+        multi ob = new multi();
+        int total = salary+ob.ta+ob.da;
+        System.out.println(("Name of employee:"+ob.name));
+        System.out.println(("Total Salary="+total));
+
+    } 
+}
+
+        </code>
+    </section>
+    <section id="7a">
+        <code>
+            import java.util.*;
+public class vector
+{
+    public static void main(String args[])
+    {
+        Vector v1 = new Vector();
+        v1.add("SYBSCIT");
+        v1.add(28);
+        v1.add(6.0);
+        System.out.println("vector is:"+v1);
+        System.out.println("Third element of vector is:"+v1.get(2));
+
+    }
+}
+
+        </code>
+    </section>
+    <section id="7b">
+        <code>
+            public class Threadlifecycle extends Thread
+{
+    public void run()
+    {
+        System.out.println("Thread is running");
+    }
+    public static void main(String args[])
+    {
+        Threadlifecycle t1 = new Threadlifecycle();
+        Threadlifecycle t2 = new Threadlifecycle();
+
+        System.out.println("Thread 1 state:"+t1.getState());
+        System.out.println("Thread 2 state:"+t2.getState());
+        t1.start();
+
+        System.out.println("Thread 1 state:"+t1.getState());
+        System.out.println("Thread 2 state:"+t2.getState());
+        t2.start();
+
+        System.out.println("Thread 1 state:"+t1.getState());
+        System.out.println("Thread 2 state:"+t2.getState());
+    }
+}
+        </code>
+    </section>
+</body>
+</html>
